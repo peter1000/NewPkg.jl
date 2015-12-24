@@ -1,0 +1,21 @@
+site_name:        NewPkg.jl
+site_url:         https://peter1000.github.io/NewPkg.jl/
+site_description: Helper to generate new julia packages.
+site_author:      peter1000
+site_favicon:     images/newpkg_favicon.ico
+
+repo_url:         https://github.com/peter1000/NewPkg.jl/
+
+pages:
+- Home: 'index.md'
+
+- About:
+    - Readme: about/readme.md
+    - License: about/license.md
+    - Changelog: about/changelog.md
+
+use_directory_urls: true
+copyright: Copyright (c) 2015 - 2015, <strong>peter1000</strong> <a href="https://github.com/peter1000/">https://github.com/peter1000/</a>.
+
+theme: 'bootstrap'
+
