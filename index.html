@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Helper to generate new julia packages.">
+        <meta name="author" content="peter1000">
+        <link rel="canonical" href="https://peter1000.github.io/NewPkg.jl/">
+        <link rel="shortcut icon" href="images/newpkg_favicon.ico">
+        
+
+	<title>NewPkg.jl</title>
+
+        <link href="./css/bootstrap-3.0.3.min.css" rel="stylesheet">
+        <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/highlight.css">
+        <link href="./css/base.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href=".">NewPkg.jl</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li class="active">
+                    <a href=".">Home</a>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="about/readme/">Readme</a>
+                        </li>
+                    
+                        <li >
+                            <a href="about/license/">License</a>
+                        </li>
+                    
+                        <li >
+                            <a href="about/changelog/">Changelog</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="disabled">
+                    <a rel="next" >
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="about/readme/">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://github.com/peter1000/NewPkg.jl/">
+                        
+                            <i class="fa fa-github"></i>
+                        
+                        GitHub
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#newpkgjl">NewPkg.jl</a></li>
+        
+            <li><a href="#usage">Usage</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="newpkgjl">NewPkg.jl</h1>
+<p>Helper to generate new julia packages.</p>
+<p>For <em>official</em> information visit the <em>NewPkg.jl package</em> <a href="http://peter1000.github.io/NewPkg.jl/">web site and documentation</a>.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="config">config()</h3>
+<pre><code>config(force::Bool=false)
+</code></pre>
+<p>Interactive configuration of the development environment.</p>
+<p><em>NewPkg.jl</em> operations require <code>git</code> minimum configuration that keeps user signature (user.name &amp; user.email).</p>
+<h3 id="generatepkg-description">generate(pkg, description)</h3>
+<pre><code>generate(pkg::AbstractString, description::AbstractString;
+            authors::Union{AbstractString, Array} = [],
+            authors_url::AbstractString           = "",
+            path::AbstractString                  = Pkg.Dir.path(),
+            github_name::AbstractString           = "",
+            github_ssh::Bool                      = true,
+            mkdocs::Bool                          = true
+        )
+</code></pre>
+<p>Generate a new package named <code>pkg</code> with <code>MIT "Expat" License</code>.
+Generate creates a git repo at <code>Pkg.dir(pkg)</code> for the package with an initial file structure.</p>
+<p>Arguments:</p>
+<ul>
+<li><code>pkg</code> - a name for the new julia package.</li>
+<li><code>description</code> -  a short description of the new julia package.</li>
+</ul>
+<p>Keyword parameters:</p>
+<ul>
+<li><code>authors</code> - a string or array of author names, the final default value will be the <code>package GitRepo user.name</code>.</li>
+<li><code>authors_url</code> - a webpage or email address related to the copyright or authors, the final default value will be
+<code>https://github.com/package GitRepo user.name/</code>. To skip it set it to <code>"NONE"</code>.</li>
+<li><code>path</code> - a location where the package will be generated, the default location is <code>Pkg.dir()</code></li>
+<li><code>github_name</code> - github organisation or user name, the final default value will be <code>package GitRepo user.name</code>. To
+skip it set it to <code>"NONE"</code>. This is used to set any <code>package repo remote github url</code> and any mkdocs: <code>site_url</code>,
+<code>repo_url</code> etc...</li>
+<li><code>github_ssh</code> - if true sets the package repo remote github url to <em>ssh version</em> otherwise the <em>https</em>, the default
+value is <code>true</code>.</li>
+<li><code>mkdocs</code> - enables generation of a <code>mkdocs.yml</code> configuration file as well as an initial <code>$pkg/docs</code> folder, the
+default value is <code>true</code>.
+<strong>Note:</strong> initial <code>site_url</code>, <code>repo_url</code> ... are generated for github.</li>
+</ul></div>
+        </div>
+
+    <footer class="col-md-12">
+        <hr>
+        
+        <center>Copyright (c) 2015 - 2015, <strong>peter1000</strong> <a href="https://github.com/peter1000/">https://github.com/peter1000/</a>.</center>
+        
+        <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+    </footer>
+
+
+        <script src="./js/jquery-1.10.2.min.js"></script>
+        <script src="./js/bootstrap-3.0.3.min.js"></script>
+        <script src="./js/highlight.pack.js"></script>
+        <script src="./js/base.js"></script>
+    </body>
+</html>
