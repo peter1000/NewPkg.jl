@@ -245,7 +245,8 @@ end
 function entrypoint(pkg::AbstractString, description::AbstractString)
     pkg_name = basename(pkg)
     genfile(pkg,"src/$pkg_name.jl") do io
-        print(io, """
+        print(io, """#__precompile__(true)
+
             "$description"
             module $pkg_name
 

@@ -1,3 +1,5 @@
+__precompile__(true)
+
 "Helper to generate new julia packages."
 module NewPkg
 
@@ -7,7 +9,7 @@ include("generate.jl")
 
 
 doc"""
-    generate(pkg)
+    generate(pkg, description)
 
 Generate a new package named `pkg` with `MIT "Expat" License`.
 Generate creates a git repo at `Pkg.dir(pkg)` for the package with an initial file structure.
@@ -26,10 +28,10 @@ Keyword parameters:
 * `github_name` - github organisation or user name, the final default value will be `package GitRepo user.name`. To
     skip it set it to `"NONE"`. This is used to set any `package repo remote github url` and any mkdocs: `site_url`,
     `repo_url` etc...
-* `github_ssh` - if true sets the package repo remote github url to *ssh version* otherwise the *https*, the default
+* `github_ssh` - if true sets the package repo remote github url to "ssh version" otherwise the "https", the default
     value is `true`.
 * `mkdocs` - enables generation of a `mkdocs.yml` configuration file as well as an initial `$pkg/docs` folder, the
-    default value is `true`.
+    default value is `true`. <br />
     **Note:** initial `site_url`, `repo_url` ... are generated for github.
 """
 generate(pkg::AbstractString, description::AbstractString;
